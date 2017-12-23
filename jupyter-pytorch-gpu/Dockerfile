@@ -1,4 +1,4 @@
-FROM pytorch/pytorch
+FROM nvidia/cuda:8.0-cudnn5-devel-ubuntu16.04
 MAINTAINER "Yogesh Kumar"
 
 RUN apt-get update && apt-get install -y wget ca-certificates \
@@ -7,6 +7,8 @@ RUN apt-get update && apt-get install -y wget ca-certificates \
 
 RUN pip3 install --upgrade pip
 RUN pip3 install numpy pandas sklearn matplotlib seaborn jupyter
+RUN pip3 install http://download.pytorch.org/whl/cu80/torch-0.3.0.post4-cp35-cp35m-linux_x86_64.whl 
+RUN pip3 install torchvision
 
 RUN ["mkdir", "notebooks"]
 COPY jupyter_notebook_config.py /root/.jupyter/
